@@ -1,5 +1,6 @@
 import requests
 from game import RecentGames
+from summoner import Summoner, MasteryPages, RunePages
 
 class RiotException(Exception):
     def __init__(self, message):
@@ -33,4 +34,37 @@ class PyRiot(object):
         endpoint = "/api/lol/{region}/v1.3/game/by-summoner/{summonerId}/recent"
         mapping = RecentGames
 
-        return mapping, self.request(endpoint, **kwargs)
+        return mapping(**self.request(endpoint, **kwargs))
+
+    def summoner_runes(self, **kwargs):
+        endpoint = "/api/lol/{region}/v1.4/summoner/{summonerIds}/runes"
+        mapping = RunePages
+
+        response = self.request(endpoint, **kwargs)
+        return {key: mapping(**value) for key, value in response.iteritems()}
+
+    def summoner_masteries(self, **kwargs):
+        endpoint = "/api/lol/{region}/v1.4/summoner/{summonerIds}/masteries"
+        mapping = MasteryPages
+
+        response = self.request(endpoint, **kwargs)
+        return {key: mapping(**value) for key, value in response.iteritems()}
+
+    def summoner_name(self, **kwargs):
+        endpoint = "/api/lol/{region}/v1.4/summoner/{summonerIds}/name"
+
+        return self.request(endpoint, **kwargs)
+
+    def summoner(self, **kwargs):
+        endpoint = "/api/lol/{region}/v1.4/summoner/{summonerIds}"
+        mapping = Summoner
+
+        response = self.request(endpoint, **kwargs)
+        return {key: mapping(**value) for key, value in response.iteritems()}
+
+    def summoner_by_name(self, **kwargs):
+        endpoint = "/api/lol/{region}/v1.4/summoner/by-name/{summonerNames}"
+        mapping = Summoner
+
+        response = self.request(endpoint, **kwargs)
+        return {key: mapping(**value) for key, value in response.iteritems()}
