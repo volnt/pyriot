@@ -1,6 +1,7 @@
 import requests
 from game import RecentGames
 from summoner import Summoner, MasteryPages, RunePages
+from stats import PlayerStatsSummaryList, RankedStats
 
 class RiotException(Exception):
     def __init__(self, message):
@@ -68,3 +69,15 @@ class PyRiot(object):
 
         response = self.request(endpoint, **kwargs)
         return {key: mapping(**value) for key, value in response.iteritems()}
+
+    def stats_ranked(self, **kwargs):
+        endpoint = "/api/lol/{region}/v1.3/stats/by-summoner/{summonerId}/ranked"
+        mapping = RankedStats
+
+        return mapping(**self.request(endpoint, **kwargs))
+
+    def stats_summary(self, **kwargs):
+        endpoint = "/api/lol/{region}/v1.3/stats/by-summoner/{summonerId}/summary"
+        mapping = PlayerStatsSummaryList
+
+        return mapping(**self.request(endpoint, **kwargs))
