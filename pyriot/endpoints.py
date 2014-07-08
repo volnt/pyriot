@@ -3,7 +3,7 @@ from summoner import Summoner, MasteryPages, RunePages
 from stats import PlayerStatsSummaryList, RankedStats
 
 return_dic      = lambda m, r: {k: m(**v) for k, v in r.iteritems()}
-return_diclist  = lambda m, r: {k: [m(**v) for v in l] for k, l in r.iteritems()}
+return_diclst   = lambda m, r: {k: [m(**v) for v in l] for k, l in r.iteritems()}
 return_obj      = lambda m, r: m(**r)
 return_lst      = lambda m, r: [m(**l) for l in r]
 
@@ -35,22 +35,22 @@ ENDPOINTS = {
     "league_by_summoner": {
         "endpoint": "/api/lol/{region}/v2.4/league/by-summoner/{summonerIds}",
         "mapping": None,
-        "return": return_diclist
+        "return": return_diclst
     },
     "league_by_summoner_entry": {
         "endpoint": "/api/lol/{region}/v2.4/league/by-summoner/{summonerIds}/entry",
         "mapping": None,
-        "return": return_diclist
+        "return": return_diclst
     },
     "league_by_team": {
         "endpoint": "/api/lol/{region}/v2.4/league/by-team/{teamIds}",
         "mapping": None,
-        "return": return_diclist
+        "return": return_diclst
     },
     "league_by_team_entry": {
         "endpoint": "/api/lol/{region}/v2.4/league/by-team/{teamIds}/entry",
         "mapping": None,
-        "return": return_diclist
+        "return": return_diclst
     },
     "league_challenger": {
         "endpoint": "/api/lol/{region}/v2.4/league/challenger",
@@ -161,4 +161,17 @@ ENDPOINTS = {
         "mapping": PlayerStatsSummaryList,
         "return": return_obj
     },
+    
+    # Team module endpoints
+
+    "teeam_by_summoner": {
+        "endpoint": "/api/lol/{region}/v2.3/team/by-summoner/{summonerIds}",
+        "mapping": None,
+        "return": return_diclst
+    },
+    "team": {
+        "endpoint": "/api/lol/{region}/v2.3/team/{teamIds}",
+        "mapping": None,
+        "return": return_dic
+    }
 }
