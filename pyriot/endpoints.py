@@ -1,4 +1,5 @@
 from game import RecentGames
+from league import League
 from summoner import Summoner, MasteryPages, RunePages
 from stats import PlayerStatsSummaryList, RankedStats
 
@@ -34,27 +35,27 @@ ENDPOINTS = {
 
     "league_by_summoner": {
         "endpoint": "/api/lol/{region}/v2.4/league/by-summoner/{summonerIds}",
-        "mapping": None,
+        "mapping": League,
         "return": return_diclst
     },
     "league_by_summoner_entry": {
         "endpoint": "/api/lol/{region}/v2.4/league/by-summoner/{summonerIds}/entry",
-        "mapping": None,
+        "mapping": League,
         "return": return_diclst
     },
     "league_by_team": {
         "endpoint": "/api/lol/{region}/v2.4/league/by-team/{teamIds}",
-        "mapping": None,
+        "mapping": League,
         "return": return_diclst
     },
     "league_by_team_entry": {
         "endpoint": "/api/lol/{region}/v2.4/league/by-team/{teamIds}/entry",
-        "mapping": None,
+        "mapping": League,
         "return": return_diclst
     },
     "league_challenger": {
         "endpoint": "/api/lol/{region}/v2.4/league/challenger",
-        "mapping": None,
+        "mapping": League,
         "return": return_obj
     },    
     
