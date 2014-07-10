@@ -31,7 +31,7 @@ ENDPOINTS = {
     "game_by_summoner": {
         "endpoint": "/api/lol/{region}/v1.3/game/by-summoner/{summonerId}/recent",
         "mapping": game.RecentGames,
-        "return": return_dic
+        "return": return_obj
     },
     
     # League module endpoints
