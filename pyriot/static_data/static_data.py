@@ -3,7 +3,7 @@ from pyriot.entity import Entity
 class ChampionList(Entity):
     def __init__(self, **kwargs):
         Entity.__init__(self, **kwargs)
-        self.data = {k, Champion(**v) for k, v in self.data.iteritems()}
+        self.data = {k: Champion(**v) for k, v in self.data.iteritems()}
 
 class Champion(Entity):
     def __init__(self, **kwargs):
@@ -66,7 +66,7 @@ class BlockItem(Entity):
 class ItemList(Entity):
     def __init__(self, **kwargs):
         Entity.__init__(self, **kwargs)
-        self.data = {k, Item(**v) for k, v in self.data.iteritems()}
+        self.data = {k: Item(**v) for k, v in self.data.iteritems()}
         self.groups = [Group(**g) for g in self.groups]
         self.tree = [ItemTree(**t) for t in self.tree]
 
@@ -109,7 +109,7 @@ class MetaData(Entity):
 class MasteryList(Entity):
     def __init__(self, **kwargs):
         Entity.__init__(self, **kwargs)
-        self.data = {k, Mastery(**v) for k, v in self.data.iteritems()}
+        self.data = {k: Mastery(**v) for k, v in self.data.iteritems()}
         self.tree = MasteryTree(**self.tree)
 
 class Mastery(Entity):
@@ -141,7 +141,7 @@ class RuneList(Entity):
     def __init__(self, **kwargs):
         Entity.__init__(self, **kwargs)
         self.basic = BasicData(**self.basic)
-        self.data = {k, Rune(**v) for k, v in self.data.iteritems()}
+        self.data = {k: Rune(**v) for k, v in self.data.iteritems()}
 
 class Rune(Entity):
     def __init__(self, **kwargs):
@@ -152,7 +152,14 @@ class Rune(Entity):
         self.stats = BasicDataStats(**self.stats)
 
 class SummonerSpellList(Entity):
-    pass # TODO
+    def __init__(self, **kwargs):
+        Entity.__init__(self, **kwargs)
+        self.data = {k: SummonerSpell(**v) for k, v in self.data.iteritems()}
 
 class SummonerSpell(Entity):
-    pass # TODO
+    def __init__(self, **kwargs):
+        Entity.__init__(self, **kwargs)
+        self.leveltip = LevelTip(**self.leveltip)
+        self.image = Image(**self.image)
+        self.vars = [SpellVars(**v) for v in self.vars]
+

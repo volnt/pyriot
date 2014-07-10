@@ -1,1 +1,1 @@
-from game import RecentGames
+from game import *

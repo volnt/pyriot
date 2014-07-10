@@ -34,9 +34,9 @@ class PyRiot(object):
 
     def __getattr__(self, attr):
         if attr in self.endpoints:
-            endpoint    = self.endpoints[name]["endpoint"]
-            mapping     = self.endpoints[name]["mapping"]
-            ret         = self.endpoints[name]["return"]
+            endpoint    = self.endpoints[attr]["endpoint"]
+            mapping     = self.endpoints[attr]["mapping"]
+            ret         = self.endpoints[attr]["return"]
             return lambda *a, **k: ret(mapping, self.request(endpoint, **k))
         else:
             raise RiotException("Endpoint '{}' does not exist.".format(name))

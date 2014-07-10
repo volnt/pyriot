@@ -1,1 +1,1 @@
-from static_data import ChampionList
+from static_data import *
